@@ -6,8 +6,8 @@
     <ImageView
         android:id="@+id/iv"
         android:src="@drawable/abocado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
     <TextView
         android:text="Abocado"
         android:textSize="20dp"
@@ -20,7 +20,8 @@
         android:textColor="#0000ff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/t2"/>
+        android:id="@+id/t2"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

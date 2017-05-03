@@ -14,7 +14,7 @@
         android:text="과일 이름:"
         android:textSize="25dp" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/fn"
         android:layout_width="100dp"
         android:layout_height="wrap_content"

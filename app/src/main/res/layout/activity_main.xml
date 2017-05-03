@@ -6,19 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.ja010.myapplication.MainActivity">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <CheckBox
+           android:id="@+id/cb"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="가격보이기"
+           android:layout_weight="1"/>
+
+       <Button
+           android:id="@+id/bc"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="카트보기" />
+   </LinearLayout>
+
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="3"
         android:id="@+id/grid"
+        android:layout_weight="1"
         ></GridView>
-    <TextView
-        android:layout_width="wrap_content"
+    <com.example.ja010.myapplication.AddF
+        android:id="@+id/add"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+
+        />
+
 
 </LinearLayout>

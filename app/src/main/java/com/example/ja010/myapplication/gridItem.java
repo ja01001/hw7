@@ -11,9 +11,10 @@ import android.widget.TextView;
  * Created by ja010 on 17-05-01.
  */
 
-public class gridItem extends LinearLayout {
+public class gridItem extends LinearLayout implements View.OnClickListener{
     ImageView iv;
-    TextView tv;
+    TextView tv,tpr;
+
     public gridItem(Context c){
         super(c);
         ini(c);
@@ -21,12 +22,20 @@ public class gridItem extends LinearLayout {
     }
     public void ini(Context c){
         View v = LayoutInflater.from(c).inflate(R.layout.item,null);
-        tv = (TextView)findViewById(R.id.tt);
-        iv = (ImageView)findViewById(R.id.iv);
+        tv = (TextView)v.findViewById(R.id.t1);
+        iv = (ImageView)v.findViewById(R.id.iv);
+        tpr = (TextView)v.findViewById(R.id.t2);
 
     }
-    public void setData(data d){
-        tv.setText(d.fun);
-        iv.setImageResource(d.n);
+
+    @Override
+    public void onClick(View view) {
+
     }
+/*
+    public void setData(data d){
+        tv.setText(d.name);
+        iv.setImageResource(d.imgno);
+    }
+*/
 }

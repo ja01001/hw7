@@ -1,10 +1,16 @@
 package com.example.ja010.myapplication;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,21 +20,23 @@ import java.util.ArrayList;
 
 public class GridAdapter  extends BaseAdapter{
     Context c;
-    ArrayList<data> data ;
+    ArrayList<data> datas ;
+    TextView fp;
+    boolean b = false;
 
 
     public GridAdapter(Context c,ArrayList<data> data){
         this.c = c;
-        this.data = data;
+        this.datas = data;
     }
     @Override
     public int getCount() {
-        return data.size();
+        return datas.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return data.get(i);
+        return datas.get(i);
     }
 
     @Override
@@ -38,9 +46,35 @@ public class GridAdapter  extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if(view ==null)
-            view = new GridView(c);
-        ((gridItem)view).setData(data.get(i));
+        if(view == null) {
+            view = LayoutInflater.from(c).inflate(R.layout.item, null);
+        }
+        final TextView fruit_name =(TextView)view.findViewById(R.id.t1);
+        fp = (TextView)view.findViewById(R.id.t2);
+        final ImageView img = (ImageView)view.findViewById(R.id.iv);
+
+        data fruit = datas.get(i);
+        if(b){
+            fp.setVisibility(TextView.VISIBLE);
+        }
+        else {
+            fp.setVisibility(TextView.GONE);
+        }
+        fruit_name.setText(fruit.getName());
+       // Toast.makeText(c,""+fruit_name, Toast.LENGTH_SHORT).show();
+        fp.setText(""+fruit.getPrice());
+      //  Toast.makeText(c,""+fp, Toast.LENGTH_SHORT).show();
+        img.setImageResource(fruit.image[fruit.getImage()]);
+      //  Toast.makeText(c,""+img, Toast.LENGTH_SHORT).show();
         return view;
+    }
+    public void refresh(){this.notifyDataSetChanged();}
+    public void addf(data data){this.datas.add(data);}
+    public void modify(data data, int position){
+        data d = datas.get(position);
+        d.setName(data.getName());
+        d.setImage(data.getImage());
+        d.setPrice(data.getPrice());
+        notifyDataSetChanged();
     }
 }
