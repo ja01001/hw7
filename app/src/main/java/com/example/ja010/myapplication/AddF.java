@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * Created by ja010 on 17-05-02.
@@ -19,10 +20,12 @@ public class AddF extends LinearLayout implements View.OnClickListener{
     int imagno = 0;
     int priceno =0;
     int position =0;
+    int ep;
 
     AutoCompleteTextView ae1;
     ImageView im;
     Button bn, ba;
+    EditText e1;
 
 
     // im bnext badd fn
@@ -36,9 +39,9 @@ public class AddF extends LinearLayout implements View.OnClickListener{
         im =(ImageView)findViewById(R.id.im);
         bn = (Button)findViewById(R.id.bnext);
         ba = (Button)findViewById(R.id.badd);
+        e1 = (EditText)findViewById(R.id.e1);
         bn.setOnClickListener(this);
         ba.setOnClickListener(this);
-
     }
     public AddF(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -58,14 +61,24 @@ public class AddF extends LinearLayout implements View.OnClickListener{
     public void onClick(View view) {
         if(view.getId() == R.id.badd){
             if(ba.getText().toString().equals("ADD")){
-                onAddListener.onAdd(ae1.getText().toString(),imagno,100);
+                onAddListener.onAdd(ae1.getText().toString(),imagno,Integer.parseInt(e1.getText().toString()));
             }
             else{
-                onAddListener.onAdd(ae1.getText().toString(),imagno,200);
-                bn.setText("ADD");
+                onModifyListener.onModiy(ae1.getText().toString(),imagno,Integer.parseInt(e1.getText().toString()));
             }
         }
-        else if(view.getId() ==R.id.bnext){
+        else if (view.getId() == R.id.bnext)
+        {
+            if(imagno == data.image.length - 1)
+            {
+                imagno = 0;
+                im.setImageResource(data.image[imagno]);
+            }
+            else
+            {
+                imagno++;
+                im.setImageResource(data.image[imagno]);
+            }
         }
     }
     interface OnAddListener{

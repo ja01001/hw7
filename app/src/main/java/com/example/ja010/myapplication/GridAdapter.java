@@ -59,6 +59,7 @@ public class GridAdapter  extends BaseAdapter{
         }
         else {
             fp.setVisibility(TextView.GONE);
+
         }
         fruit_name.setText(fruit.getName());
        // Toast.makeText(c,""+fruit_name, Toast.LENGTH_SHORT).show();
@@ -68,13 +69,11 @@ public class GridAdapter  extends BaseAdapter{
       //  Toast.makeText(c,""+img, Toast.LENGTH_SHORT).show();
         return view;
     }
+    public void setVision(Boolean vision){
+        b = vision;
+        this.notifyDataSetChanged();
+    }
     public void refresh(){this.notifyDataSetChanged();}
     public void addf(data data){this.datas.add(data);}
-    public void modify(data data, int position){
-        data d = datas.get(position);
-        d.setName(data.getName());
-        d.setImage(data.getImage());
-        d.setPrice(data.getPrice());
-        notifyDataSetChanged();
-    }
+
 }
