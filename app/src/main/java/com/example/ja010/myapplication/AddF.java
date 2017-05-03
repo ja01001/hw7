@@ -21,13 +21,10 @@ public class AddF extends LinearLayout implements View.OnClickListener{
     int priceno =0;
     int position =0;
     int ep;
-
     AutoCompleteTextView ae1;
     ImageView im;
     Button bn, ba;
     EditText e1;
-
-
     // im bnext badd fn
     public AddF(Context context,  AttributeSet attrs) {
         super(context, attrs);

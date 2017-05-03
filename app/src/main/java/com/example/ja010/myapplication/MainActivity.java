@@ -20,19 +20,20 @@ public class MainActivity extends AppCompatActivity {
     int Pos = 0;
     GridAdapter ga;
     ArrayList<data> datalist = new ArrayList<data>();
+    ArrayList<String> cart = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gv = (GridView)findViewById(R.id.grid);
-        datalist.add(new data("아보카도",0,1000));
-        datalist.add(new data("바나나",1,2000));
-        datalist.add(new data("체리",2,3000));
-        datalist.add(new data("크렌베리",3,4000));
-        datalist.add(new data("포도",4,5000));
-        datalist.add(new data("키위",5,6000));
-        datalist.add(new data("오렌지",6,7000));
-        datalist.add(new data("참외",7,8000));
+        datalist.add(new data("아보카도",0,1000,0));
+        datalist.add(new data("바나나",1,2000,0));
+        datalist.add(new data("체리",2,3000,0));
+        datalist.add(new data("크렌베리",3,4000,0));
+        datalist.add(new data("포도",4,5000,0));
+        datalist.add(new data("키위",5,6000,0));
+        datalist.add(new data("오렌지",6,7000,0));
+        datalist.add(new data("참외",7,8000,0));
         ga = new GridAdapter(this,datalist);
         gv.setAdapter(ga);
         af = (AddF)findViewById(R.id.add);
@@ -51,15 +52,24 @@ public class MainActivity extends AppCompatActivity {
                         item.setImage(imgno);
                         item.setPrice(price);
                         ga.notifyDataSetChanged();
-
                     }
                 });
+                if(item.getCountNumber() ==0){
+                    Toast.makeText(getApplicationContext(),"카트에 담겼습니다.",Toast.LENGTH_SHORT).show();
+                    item.setCountNumber(1);
+                    cart.add(item.getName());
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                    item.setCountNumber(0);
+                    cart.remove(item.getName());
+                }
             }
         });
         af.setOnAddListener(new AddF.OnAddListener() {
             @Override
             public void onAdd(String name, int imgno, int price) {
-                ga.addf(new data(name,imgno,price));
+                ga.addf(new data(name,imgno,price,0));
             }
         });
 
@@ -79,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"카트에 담긴것은 "+cart+"입니다.",Toast.LENGTH_SHORT).show();
             }
         });
     }

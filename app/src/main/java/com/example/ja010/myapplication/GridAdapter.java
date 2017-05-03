@@ -59,7 +59,6 @@ public class GridAdapter  extends BaseAdapter{
         }
         else {
             fp.setVisibility(TextView.GONE);
-
         }
         fruit_name.setText(fruit.getName());
        // Toast.makeText(c,""+fruit_name, Toast.LENGTH_SHORT).show();
